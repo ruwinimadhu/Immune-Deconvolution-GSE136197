@@ -1,0 +1,49 @@
+sample	source	histology	group
+1A	mammary gland_Normal	Normal	Normal
+1C	mammary gland_Carcinoma	Carcinoma	Tumor
+1F	mammary gland_Carcinoma	Carcinoma	Tumor
+2C	mammary gland_Normal	Normal	Normal
+2E	mammary gland_Normal	Normal	Normal
+2F	mammary gland_Carcinoma-In Situ	Carcinoma-In Situ	Tumor
+3B	mammary gland_Carcinoma	Carcinoma	Tumor
+3C	mammary gland_Normal	Normal	Normal
+4A	mammary gland_Carcinoma	Carcinoma	Tumor
+4C	mammary gland_Normal	Normal	Normal
+4D	mammary gland_Atypia-Normal	Atypia-Normal	Normal
+4F	mammary gland_Normal	Normal	Normal
+6A	mammary gland_Normal	Normal	Normal
+6C	mammary gland_Carcinoma	Carcinoma	Tumor
+6E	mammary gland_Atypia-Normal	Atypia-Normal	Normal
+8B	mammary gland_Carcinoma	Carcinoma	Tumor
+8D	mammary gland_Normal	Normal	Normal
+8E	mammary gland_Carcinoma	Carcinoma	Tumor
+9D	mammary gland_Normal	Normal	Normal
+9F	mammary gland_Carcinoma	Carcinoma	Tumor
+9G	mammary gland_Normal	Normal	Normal
+10B	mammary gland_Carcinoma	Carcinoma	Tumor
+10C	mammary gland_Normal	Normal	Normal
+10F	mammary gland_Normal	Normal	Normal
+11A	mammary gland_Normal	Normal	Normal
+11B	mammary gland_Carcinoma	Carcinoma	Tumor
+11F	mammary gland_Atypia-Normal	Atypia-Normal	Normal
+11H	mammary gland_Carcinoma-In Situ	Carcinoma-In Situ	Tumor
+11I	mammary gland_Carcinoma	Carcinoma	Tumor
+11J	mammary gland_Carcinoma	Carcinoma	Tumor
+12A	mammary gland_Normal	Normal	Normal
+12B	mammary gland_Carcinoma	Carcinoma	Tumor
+12C	mammary gland_Normal	Normal	Normal
+13A	mammary gland_Normal	Normal	Normal
+13C	mammary gland_Carcinoma	Carcinoma	Tumor
+14A	mammary gland_Normal	Normal	Normal
+14B	mammary gland_Carcinoma	Carcinoma	Tumor
+14G	mammary gland_Normal	Normal	Normal
+15A	mammary gland_Normal	Normal	Normal
+15B	mammary gland_Carcinoma	Carcinoma	Tumor
+16E	mammary gland_Normal	Normal	Normal
+16F	mammary gland_Carcinoma	Carcinoma	Tumor
+17A	mammary gland_Normal	Normal	Normal
+17B	mammary gland_Carcinoma-In Situ	Carcinoma-In Situ	Tumor
+17C	mammary gland_Normal	Normal	Normal
+18A	mammary gland_Normal	Normal	Normal
+18D	mammary gland_Carcinoma	Carcinoma	Tumor
+18G	mammary gland_Carcinoma	Carcinoma	Tumor
