@@ -1,94 +1,103 @@
-# EPIC-Immune-Deconvolution-GSE136197
-Immune cell deconvolution of canine mammary tumor RNA-seq data (GSE136197) using the EPIC algorithm. Includes full R code for preprocessing, EPIC analysis, statistical comparisons, and figure generation for publication.
-# Immune Cell Deconvolution Analysis in Canine Mammary Tumors Using EPIC
+# Immune Cell Deconvolution in Canine Mammary Tumors (GSE136197)
 
-This repository contains R scripts, data, and visualizations used to perform immune cell deconvolution of canine mammary tumor RNA-seq data using the EPIC algorithm, with a comparative analysis between normal and tumor samples.
-
-The pipeline includes immune cell fraction quantification, statistical testing, effect size calculation, and publication-ready visualizations including boxplots, PCA, and heatmaps.
+This repository contains the complete analysis pipeline for immune cell deconvolution of canine mammary tumor RNA-seq data (GSE136197), using two complementary algorithms: **EPIC** and **CIBERSORTx**. The goal of this project is to profile immune infiltration patterns, with a specific focus on **CD4⁺ T cell enrichment** across histological subtypes of canine mammary tumors.
 
 ---
 
 ## 🧬 Overview
 
-- **Data Source**: GSE136197 (Canine mammary tumor RNA-seq data)
-- **Deconvolution Tool**: [EPIC](https://gfellerlab.shinyapps.io/EPIC_1-1/)
-- **Cell Types**: B cells, CD4/CD8 T cells, NK cells, Macrophages, CAFs, Endothelial cells, Other immune cells
-- **Groups Compared**: Tumor vs Normal
-- **Visualization**: ggplot2 boxplots with Wilcoxon test p-values and Cohen’s d effect sizes
+- **Dataset**: [GSE136197](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE136197) – RNA-seq from normal and tumor canine mammary tissues  
+- **Tools Used**:
+  - [EPIC](https://gfellerlab.shinyapps.io/EPIC_1-1/) – bulk immune deconvolution
+  - [CIBERSORTx](https://cibersortx.stanford.edu/) – subset-level immune cell profiling
+- **Main Goal**: Evaluate immune remodeling (esp. CD4⁺ T cells) across tumor progression
+- **Study Status**: Submitted for publication (Herath, 2025)
 
 ---
 
 ## 📁 Repository Structure
-├── data/
-│ └── EPIC_input_matrix.tsv # TPM matrix or preprocessed expression data
-├── results/
-│ ├── EPIC_Immune_Heatmap_Scaled.pdf # Heatmap of scaled immune fractions
-│ ├── Immune_Cell_Fractions_EPIC.pdf # Final publication-ready boxplots
-│ └── EPIC_PCA.pdf # PCA of immune cell fractions
-├── scripts/
-│ ├── 01_EPIC_processing.R # Data cleaning and formatting
-│ ├── 02_EPIC_visualization.R # Main figure generation
-│ └── 03_EPIC_statistics.R # Effect sizes and statistical analysis
-├── README.md
 
+├── data/
+│ ├── GSE136197_TPM_humanOrthologs.tsv # Normalized expression matrix with human gene symbols
+│ ├── CIBERSORTx_Output.tsv # Output matrix from CIBERSORTx
+│ └── metadata.tsv # Sample metadata with histology and phenotype
+│
+├── results/
+│ ├── EPIC_Immune_Fractions_Boxplots.pdf # Final boxplots (EPIC)
+│ ├── EPIC_Heatmap_Scaled.pdf # Heatmap of z-score scaled EPIC fractions
+│ ├── EPIC_PCA.pdf # PCA of immune profiles (EPIC)
+│ └── CIBERSORTx_Boxplots.pdf # CD4+ subsets by histology (CIBERSORTx)
+│
+├── scripts/
+│ ├── 01_Preprocessing_EPIC.R # Data formatting and TPM conversion
+│ ├── 02_Visualization_EPIC.R # ggplot2, pheatmap, PCA
+│ ├── 03_Statistics_EPIC.R # Kruskal-Wallis, Dunn test, Cohen’s d
+│ └── 04_Visualization_CIBERSORTx.R # CD4⁺ subset plotting
+│
+├── LICENSE
+└── README.md
+
+yaml
+Copy
+Edit
 
 ---
 
 ## 📊 Main Visualizations
 
-- 📌 **Boxplots** (Tumor vs Normal) of each immune cell type with Wilcoxon test p-values
-- 📌 **Heatmap** of scaled immune fractions across all samples
-- 📌 **PCA plot** of immune landscapes (color-coded by phenotype)
+- 📌 **Boxplots**: Immune fractions (EPIC & CIBERSORTx) by histological subtype  
+- 📌 **Heatmap**: Z-score scaled immune landscape across 48 samples  
+- 📌 **PCA**: Dimensional reduction based on immune profiles  
+- 📌 **Subset Analysis**: CD4⁺ memory, activated, Tregs, and Tfh (CIBERSORTx)
 
 ---
 
-## 📦 R Package Requirements
+## 📦 Required R Packages
 
-install.packages(c("tidyverse", "ggpubr", "ggplot2", "effectsize", "pheatmap", "RColorBrewer", "factoextra"))
-
-install Bioconductor packages if needed:
+```r
+install.packages(c("tidyverse", "ggpubr", "ggplot2", "effectsize", 
+                   "pheatmap", "RColorBrewer", "factoextra", "FSA"))
 
 if (!require("BiocManager")) install.packages("BiocManager")
 BiocManager::install("Biobase")
+▶️ How to Reproduce
+  -Prepare expression matrix
+  -Convert raw counts to TPM
+  -Map canine Ensembl IDs to human orthologs
+  -Format as EPIC/CIBERSORTx input
 
-▶️ How to Run
-Prepare the expression matrix
-Format the matrix as required by EPIC and load it into scripts/01_EPIC_processing.R
+* Run EPIC deconvolution
+  -Use local R script or EPIC Shiny App
+  -Save output as .tsv
 
-Run immune deconvolution externally
-Submit the expression matrix to EPIC and download the results.
+* Run CIBERSORTx
+  -Upload TPM matrix to CIBERSORTx
+  -Download immune subset fractions
 
-Generate plots and statistics
-Execute 02_EPIC_visualization.R and 03_EPIC_statistics.R to create all plots.
-
-Export publication figures
-Set ggsave() or pdf() output to save at dpi = 300 as PDF/PNG.
+* Visualize results
+  -Run 02_Visualization_EPIC.R and 04_Visualization_CIBERSORTx.R
+  -Export plots in .pdf format for publication
 
 📜 Citation
-If you use this code or adapt it for your research, please cite:
+If you use this repository or build upon it, please cite:
 
-Herath, R. (2025). Immune Cell Landscape of Canine Mammary Tumors Inferred by EPIC Deconvolution. Submitted for publication.
+Herath, R.M.H.H. (2025). Dual Deconvolution of Canine Mammary Tumors Reveals Robust CD4⁺ T Cell Enrichment via EPIC and CIBERSORTx. Submitted to Genomics & Informatics.
 
 📘 License
-This repository is licensed under the MIT License. See LICENSE for details.
-
-🤝 Contributions
-You’re welcome to fork, cite, or adapt this work. For major contributions, please open an issue or contact the original author.
+This project is licensed under the MIT License. See the LICENSE file for details.
 
 💡 Acknowledgments
-EPIC developers and Gfeller Lab for providing the algorithm
+The Gfeller Lab and EPIC developers
 
-The original authors of GSE136197 dataset
+The CIBERSORTx team at Stanford University
 
-SLU lab team for mentorship and support during the project
+The authors of the GSE136197 dataset (Graim et al., 2021)
 
+SLU Veterinary Faculty for supervision and support
 
----
+🤝 Contributions
+Feel free to fork, reuse, or cite this repository. For major suggestions or collaboration requests, please contact:
 
-Let me know if you'd like:
+📧 ruwiniherath92@gmail.com
+🔗 ORCID: 0009-0000-7982-0690
 
-- A downloadable `README.md` file
-- A ready-to-upload `.zip` of this full repo structure
-- Help writing your `LICENSE` file or a `citation.cff` for GitHub's citation button
-
-I'm happy to help!
